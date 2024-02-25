@@ -1,14 +1,15 @@
 import express from "express";
 const router =  express.Router()
+import {getNotes , getSingalNotes , createNotes, updateNote , deletNote} from '../controllers/notes.js';
+import { get } from "mongoose";
 
-router.get("/:id",(req,res) => {
-  res.send("Get a singal note")
-})
-router.post("/",(req,res) => {
-  res.send("Create a new note")
-})
-router.put("/:id",(req,res) => {
-  res.send("Update a singal note")
-})
+router.route("/").get(getNotes).post(createNotes)
+router.route("/:id").get(getSingalNotes).put(updateNote).delete(deletNote)
+
+// router.get("/",getNotes)
+// router.get("/:id",getSingalNotes)
+// router.post("/",createNotes)
+// router.put("/:id",updateNote)
+// router.delete("/:id",deletNote)
 
 export default router;
