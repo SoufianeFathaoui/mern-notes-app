@@ -19,9 +19,9 @@ const noteSchema = new mongoose.Schema({
     type:String,
     default:"#ffffff"
   },
-  createdAt:{
-    type:Date,
-    default:Date.now,
+},
+  {
+    timestamps:true,
   }
-})
+)
 export default mongoose.model("Note",noteSchema)
