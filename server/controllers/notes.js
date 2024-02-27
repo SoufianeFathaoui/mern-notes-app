@@ -1,8 +1,9 @@
 import note from '../models/Note.js';
 
 export const getNotes = async (req , res) => {
+  const userId = req.userId
   try {
-    const notes = await note.find()
+    const notes = await note.find({userId})
     res.status(200).json({
       success:true,
       data:notes,
@@ -34,8 +35,13 @@ export const getSingalNotes = async (req,res) => {
   }
 }
 export const createNotes = async (req , res) => {
+  const user = req.userId
   try {
-    const note1 = await note.create(req.body)
+    const note1 = await note.create({
+      ...req.body,
+      userId:user
+
+    })
     res.status(200).json({
       success:true,
       data:note1
