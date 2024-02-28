@@ -21,7 +21,7 @@ export const getSingalNotes = async (req,res) => {
       return res.status(200).json({
         success:flase,
         error:"This note doesn't exixt"
-      })
+      })    
     }
     res.status(200).json({
       success:true,
@@ -40,7 +40,6 @@ export const createNotes = async (req , res) => {
     const note1 = await note.create({
       ...req.body,
       userId:user
-
     })
     res.status(200).json({
       success:true,
