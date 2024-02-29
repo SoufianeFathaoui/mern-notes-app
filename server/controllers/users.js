@@ -58,6 +58,12 @@ export const register = async (req,res) => {
 }
 export const login = async (req,res) => {
   const {email,password} = req.body
+  if(!email || !password){
+    return res.status(400).json({
+      success:false,
+      error:"Please provide an email and password"
+    })
+  }
   if(!validator.isEmail(email)){
     res.status(400).json({
       success:false,
@@ -76,6 +82,7 @@ export const login = async (req,res) => {
     const token = generateToken(ifUserExist._id)
     res.status(200).json({
       success:true,
+      token,
       User:ifUserExist.email
     })
   } catch (error) {
